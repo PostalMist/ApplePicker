@@ -27,10 +27,21 @@ public class ApplePicker : MonoBehaviour {
     { // a
       // Destroy all of the falling apples
         GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple"); //b
+        GameObject[] greenAppleArray = GameObject.FindGameObjectsWithTag("GreenApple");
+        GameObject[] yellowAppleArray = GameObject.FindGameObjectsWithTag("YellowApple");
 
         foreach (GameObject tGO in tAppleArray)
         {
             Destroy(tGO);
+        }
+
+        foreach (GameObject gAGO in greenAppleArray) {
+            Destroy(gAGO);
+        }
+
+        foreach (GameObject yAGO in yellowAppleArray) {
+            Destroy(yAGO);
+
         }
 
         // Destroy one of the baskets // e
@@ -44,7 +55,8 @@ public class ApplePicker : MonoBehaviour {
         if (basketList.Count == 0)
         {
             SceneManager.LoadScene("_Scene_0"); // a
-        }
+        }
+
 
     }
 

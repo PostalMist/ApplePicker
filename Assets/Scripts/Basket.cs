@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Basket : MonoBehaviour {
-
+    [Header("Set In Inspector")]
+    public float slowPeriod = 3.5f;
+    public float enlargedPeriod = 3.5f;
     [Header("Set Dynamically")]
     public Text scoreGT; // a
+    //contains apple Picker script
+    public ApplePicker apScript;
+    //the maximum length that the basket can grow
+    private float MaxScaleX = 12.0f;
     //used for intialization
     void Start()
     {
@@ -16,6 +22,8 @@ public class Basket : MonoBehaviour {
         scoreGT = scoreGO.GetComponent<Text>(); // c
                                                 // Set the starting number of points to 0
         scoreGT.text = "0";
+        //get applepicker script
+        apScript = Camera.main.GetComponent<ApplePicker>();
     }
 
 
@@ -49,7 +57,53 @@ public class Basket : MonoBehaviour {
             if (score > HighScore.score)
             {
                 HighScore.score = score;
-            }
+            }
+
+        } else if(collidedWith.tag == "GreenApple") {
+
+            Destroy(collidedWith);
+            foreach (GameObject basketPart in apScript.basketList)
+            {
+                Vector3 scale = basketPart.transform.localScale;
+
+                if (scale.x < MaxScaleX)
+                {
+                    scale.x *= 2;
+                }
+
+                basketPart.transform.localScale = scale;
+
+
+            }
+
+            Invoke("ResetBasketSize", enlargedPeriod);
+
+        } else if(collidedWith.tag == "YellowApple") {
+            Destroy(collidedWith);
+            //slow down time
+            Time.timeScale = 0.4f;
+
+            //reset it back to real time after a while
+            Invoke("ResetTime", slowPeriod);
+
+        }
+    }
+
+    void ResetTime() {
+
+        Time.timeScale = 1.0f;
+    }
+
+    void ResetBasketSize() {
+        foreach (GameObject basketPart in apScript.basketList)
+        {
+            Vector3 scale = basketPart.transform.localScale;
+
+            scale.x = 4;
+
+            basketPart.transform.localScale = scale;
+
+
         }
     }
 }

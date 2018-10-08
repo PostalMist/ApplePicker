@@ -438,6 +438,18 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114443511505662888, guid: fa8bdbcb29fbd7e4590577d391111939,
+        type: 2}
+      propertyPath: yellowApplePrefab
+      value: 
+      objectReference: {fileID: 1273108168357954, guid: 4122e3e288d855b45b1812e66069066d,
+        type: 2}
+    - target: {fileID: 114443511505662888, guid: fa8bdbcb29fbd7e4590577d391111939,
+        type: 2}
+      propertyPath: greenApplePrefab
+      value: 
+      objectReference: {fileID: 1273108168357954, guid: a8e6d7546cedf5f4cbed47dc829a1da7,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8bdbcb29fbd7e4590577d391111939, type: 2}
   m_IsPrefabAsset: 0
